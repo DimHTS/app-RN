@@ -17,30 +17,38 @@ class Todo extends Component {
     }
   }
 
-
   handlePress = () => {
-    this.setState({
-      todos: [...this.state.todos, this.state.newTodo],
-      newTodo: ''
-    })
+    if (this.state.newTodo) {
+      this.setState({
+        todos: [...this.state.todos, this.state.newTodo],
+        newTodo: ''
+      })
+    } else {
+      alert('Заполните поле!')
+    }
   }
 
   render() {
     return (
-      <View style={styles.top}>
+      <View style={styles.container}>
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            value={this.state.newTodo}
+            onChangeText={(text) => this.setState({ newTodo: text })} />
 
-        <TextInput
-          value={this.state.newTodo}
-          onChangeText={(text) => this.setState({ newTodo: text })}
-        />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.handlePress}>
+            <Text>Добавить</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity onPress={this.handlePress}>
-          <Text>КНОПКА</Text>
-        </TouchableOpacity>
-
-        {this.state.todos.map((item, num) => {
-          return <Text key={num}>{item}</Text>
-        })}
+        <View style={styles.todos}>
+          {this.state.todos.map((item, num) => {
+            return <Text style={styles.todo} key={num}>{item}</Text>
+          })}
+        </View>
       </View>
     )
   }
@@ -48,8 +56,37 @@ class Todo extends Component {
 
 
 const styles = StyleSheet.create({
-  top: {
-    marginTop: 40
+  container: {
+    flex: 1,
+    marginTop: 20,
+    padding: 20
+  },
+  form: {
+    flexDirection: 'row'
+  },
+  input: {
+    flex: 0.7,
+    color: 'white',
+    fontSize: 16,
+    lineHeight: 1.2,
+  },
+  button: {
+    flex: 0.3,
+    borderWidth: 1,
+    backgroundColor: 'yellow',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  todos: {
+    marginTop: 10
+  },
+  todo: {
+    marginBottom: 4,
+    fontSize: 18,
+    color: 'white',
+    borderBottomWidth: 1,
+
   }
 });
 
