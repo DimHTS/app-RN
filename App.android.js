@@ -1,6 +1,8 @@
 import React from 'react'
 import { AppRegistry, StyleSheet, View } from 'react-native'
 
+import ScrollableTabView from 'react-native-scrollable-tab-view'
+
 // Components
 import Todo from './src/App/Todo'
 import Fancy from './src/App/Fancy'
@@ -11,9 +13,15 @@ export default class Main extends React.Component {
   render() {
     return (
       <View style={[styles.container, { backgroundColor: '#6699FF' }]}>
+        <ScrollableTabView>
+          <Reddit tabLabel="Reddit" />
+          <Todo tabLabel="Todo" />
+          <Fancy tabLabel="Fancy" />
+          <View tabLabel="View" />
+        </ScrollableTabView>
         {/* <Todo />
-        <Fancy /> */}
-        <Reddit />
+        <Fancy />
+        <Reddit /> */}
       </View>
     )
   }
@@ -22,8 +30,8 @@ export default class Main extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    paddingTop: 35
+    // padding: 15,
+    paddingTop: 28
   },
 })
 

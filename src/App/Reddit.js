@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 class Reddit extends Component {
   constructor(props) {
@@ -20,8 +20,8 @@ class Reddit extends Component {
   }
   render() {
     return (
-      <View>
-        <Text>reddit</Text>
+      <View style={styles.container}>
+        <Text style={styles.h1}>reddit</Text>
         <View>
           {this.state.posts.map((post, num) => (
             <Text key={num}>{post.data.author}</Text>
@@ -32,5 +32,16 @@ class Reddit extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 15
+  },
+  h1: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingBottom: 10
+  }
+})
 
 export default Reddit;
